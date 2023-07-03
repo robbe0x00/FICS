@@ -2,6 +2,8 @@ import subprocess
 from pprint import pprint
 from subprocess import call
 from timeit import default_timer
+import os
+import shutil
 
 # import clang.cindex as cl
 import networkx as nx
@@ -74,8 +76,15 @@ class SourceFile:
         LOG = open(llvm_log_file, 'w')
         parse_start_time = default_timer()
         try:
-            call([self.arguments.clang, '-emit-llvm', '-c', '-g', self.source_file, '-o', bc_file] + args,
-                 stdout=LOG, stderr=subprocess.STDOUT, close_fds=True)
+            #call([self.arguments.clang, '-emit-llvm', '-c', '-g', self.source_file, '-o', bc_file] + args,
+            #     stdout=LOG, stderr=subprocess.STDOUT, close_fds=True)
+            call([self.arguments.clang, '-emit-llvm', '-c', '-g', self.source_file] + args,
+                  stdout=LOG, stderr=subprocess.STDOUT, close_fds=True)
+            try:
+                os.makedirs(os.path.dirname(bc_file))
+            except:
+                pass
+            shutil.copy2(os.path.basename(bc_file), bc_file)
         except:
             print 'crash in clang', self.source_file
             return True
@@ -83,8 +92,8 @@ class SourceFile:
         write_file(time_file, '{}'.format(parse_elapsed))
         change_directory(cwd)
         # llvm_dis = join_path(self.arguments.llvm_config, 'llvm-dis')
-        llvm_dis = 'llvm-dis-3.8'
-	LOG = open(llvm_dis_log_file, 'w')
+        llvm_dis = 'llvm-dis'
+        LOG = open(llvm_dis_log_file, 'w')
         try:
             if is_file(bc_file):
                 call([llvm_dis, bc_file, '-o', ll_file],

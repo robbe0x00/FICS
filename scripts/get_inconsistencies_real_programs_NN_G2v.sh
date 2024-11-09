@@ -18,10 +18,10 @@ if [ "${preprocess}" = "p" ]; then
 	datasets=$(cat ./settings.py | grep "DATASETS_DIR" | cut -d '=' -f 2 | cut -d '#' -f 1 | tr -d \'\" | tr -d '[:space:]')
 	bcs=$(cat ./settings.py | grep "BCS_DIR" | cut -d '=' -f 2 | cut -d '#' -f 1 | tr -d \'\" | tr -d '[:space:]')
 	data=$(cat ./settings.py | grep "DATA_DIR" | cut -d '=' -f 2 | cut -d '#' -f 1 | tr -d \'\" | tr -d '[:space:]')
-	echo "Removing dataset folder of $benchmark"
-	rm -rf "$data/$datasets/$benchmark"
-	echo "Removing IR folder of $benchmark"
-	rm -rf "$data/$bcs/$benchmark"
+	# echo "Removing dataset folder of $benchmark"
+	# rm -rf "$data/$datasets/$benchmark"
+	# echo "Removing IR folder of $benchmark"
+	# rm -rf "$data/$bcs/$benchmark"
 	python __init__.py -p=$benchmark -a=BC
 	python __init__.py -p=$benchmark -a=PDG
 	python __init__.py -p=$benchmark -a=AS

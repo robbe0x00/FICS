@@ -1,6 +1,6 @@
 ACTIONS = ''
 LANGUAGES = 'C'
-DATA_DIR = '/home/mansour/bank/FICS/data/'  # Full path must be provided
+DATA_DIR = '/data/'  # Full path must be provided
 PROJECTS_DIR = 'projects'
 ASTS_DIR = 'asts'
 SAVE_FORMAT = 'graph'  # json , graph , ast

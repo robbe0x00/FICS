@@ -50,6 +50,9 @@ class SourceFile:
         self.source_file_bc_dir = join_path(parent_dir, get_basename(self.source_file))
         make_dir_if_not_exist(self.source_file_bc_dir)
         bc_file = join_path(self.source_file_bc_dir, get_filename_without_ext(get_basename(self.source_file)) + '.bc')
+        if exist_file(bc_file):
+            print 'BC file already exists, skipping...'
+            return True
         ll_file = join_path(self.source_file_bc_dir, get_filename_without_ext(get_basename(self.source_file)) + '.ll')
         llvm_log_file = join_path(self.source_file_bc_dir, 'llvm.log.txt')
         llvm_dis_log_file = join_path(self.source_file_bc_dir, 'llvm-dis.log.txt')
@@ -59,6 +62,7 @@ class SourceFile:
         args = []
         # print self.compile_arguments
         if self.compile_arguments is None and not self.arguments.ignore_compile_commands:
+            print 'self compile args is None'
             return True
         self.compile_arguments = [ca for ca in self.compile_arguments if not ca.startswith('-O')] + ['-O0']
         if "-Wexpansion-to-defined" in self.compile_arguments:

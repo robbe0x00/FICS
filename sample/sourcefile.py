@@ -51,7 +51,6 @@ class SourceFile:
         make_dir_if_not_exist(self.source_file_bc_dir)
         bc_file = join_path(self.source_file_bc_dir, get_filename_without_ext(get_basename(self.source_file)) + '.bc')
         if exist_file(bc_file):
-            print 'BC file already exists, skipping...'
             return True
         ll_file = join_path(self.source_file_bc_dir, get_filename_without_ext(get_basename(self.source_file)) + '.ll')
         llvm_log_file = join_path(self.source_file_bc_dir, 'llvm.log.txt')

@@ -46,6 +46,8 @@ class BitCodeFile:
         make_dir_if_not_exist(pdg_dir)
         for function_name in self.get_functions():
             function_pdg_file = join_path(pdg_dir, '{}.pdg.dot'.format(function_name))
+            if exist_file(function_pdg_file):
+                continue
             # llvm_pdg_log_file = join_path(pdg_dir, '{}.log.txt'.format(function))
             time_file = join_path(pdg_dir, '{}.pdg.time.txt'.format(function_name))
             # args = ['-entrypoint', function, '-nocfg', '>', function_pdg_file]

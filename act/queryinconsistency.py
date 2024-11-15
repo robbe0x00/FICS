@@ -30,9 +30,9 @@ class QueryInconsistency(Act):
         try:
             if self.arguments.ssh:
                 self.establish_ssh_tunnel()
-                self.mongodb_client = MongoClient('mongodb://localhost', self.server.local_bind_port)
+                self.mongodb_client = MongoClient('mongodb://' + self.arguments.mongo_url, self.server.local_bind_port)
             else:
-                self.mongodb_client = MongoClient('mongodb://localhost:27017')
+                self.mongodb_client = MongoClient('mongodb://' + self.arguments.mongo_url + ':27017')
             fics_db = self.mongodb_client["fics"]
             for project_name in self.arguments.projects:
                 print 'Project:', project_name

@@ -20,6 +20,7 @@ class ArgsParser:
             languages=args.languages.split(','),
             data_dir=args.data_dir,
             projects_dir=args.projects_dir,
+            mongo_url=args.mongo_url,
             asts_dir=args.asts_dir,
             bcs_dir=BCS_DIR,
             datasets_dir=DATASETS_DIR,
@@ -91,6 +92,13 @@ class ArgsParser:
             type=str,
             default=PROJECTS_DIR,
             help='Base directory of the projects'
+        )
+
+        self.parser.add_argument('--mongo_url',
+                '-m',
+                type=str,
+                default=MONGO_URL,
+                help='url of the MongoDB instance'
         )
 
         self.parser.add_argument(

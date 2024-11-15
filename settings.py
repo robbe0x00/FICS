@@ -2,6 +2,7 @@ ACTIONS = ''
 LANGUAGES = 'C'
 DATA_DIR = '/data/'  # Full path must be provided
 PROJECTS_DIR = 'projects'
+MONGO_URL = "mongo" # used to find mongo db
 ASTS_DIR = 'asts'
 SAVE_FORMAT = 'graph'  # json , graph , ast
 BCS_DIR = 'bcs'

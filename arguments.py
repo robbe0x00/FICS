@@ -1,7 +1,7 @@
 import multiprocessing as mp
 
 class Arguments:
-    def __init__(self, actions, languages, data_dir, projects_dir, asts_dir, bcs_dir,
+    def __init__(self, actions, languages, data_dir, projects_dir, mongo_url, asts_dir, bcs_dir,
                  datasets_dir, plots_dir, search_spaces, clang_lib_dir, clustering_algs, clustering_feat,
                  second_clustering, cose_similarity_chunk_size, big_clusters_ignore, chunk_window_size,
                  split, projects, save_format,
@@ -14,6 +14,7 @@ class Arguments:
         self.languages = languages
         self.data_dir = data_dir
         self.projects_dir = projects_dir
+        self.mongo_url = mongo_url
         self.asts_dir = asts_dir
         self.bcs_dir = bcs_dir
         self.datasets_dir = datasets_dir

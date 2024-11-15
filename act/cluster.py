@@ -15,9 +15,10 @@ from utils.inout import *
 
 
 def process_cluster(clusters_samples, key, args, second_clustering_alg, project_dir, second_dataset_locations,
-                    second_dataset_features, feature_type, node_features, node_features_locations):
+                    second_dataset_features, feature_type, node_features, node_features_locations, mongo_url):
     # Do not perform 2nd step clustering if the size of cluster is greater than 200 item
     # Based on the experiments, inconsistencies appear in clusters with smaller sizes
+    self.mongo_url = mongo_url
     cluster_items_locations = clusters_samples[key]
     node_differences = defaultdict(list)
     result = None
@@ -476,7 +477,7 @@ class Cluster(Act):
                          step='2nd_step',
                          clustering_feat='', module_name='whole', differences=None):
 
-        client = MongoClient('mongodb://localhost:27017')
+        client = MongoClient('mongodb://' + self.mongo_url + ':27017')
         fics_db = client["fics"]
 
         first_clustering_params = first_clustering_alg.split('_')

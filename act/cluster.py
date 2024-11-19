@@ -189,8 +189,7 @@ class Cluster(Act):
                                 result = process_cluster(clusters_samples, key, self.arguments,
                                                          second_clustering_alg, project_dir,
                                                          second_dataset_locations, second_dataset_features,
-                                                         secondstep_features[1], node_features, node_features_locations,
-                                                         self.arguments.mongo_url)
+                                                         secondstep_features[1], node_features, node_features_locations)
                                 my_callback(result)
                             # for key in clusters_samples_len_sorted_keys:
                             #     p.apply_async(process_cluster, (clusters_samples, key, self.arguments,
